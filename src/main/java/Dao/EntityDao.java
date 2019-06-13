@@ -11,46 +11,47 @@ import java.util.Set;
 public class EntityDao {
   
   //Add subscription
+  Set<SubscriptionEntity> subs = new HashSet<>();
   SubscriptionEntity subOne = new SubscriptionEntity();
   SubscriptionEntity subTwo = new SubscriptionEntity();
-  Set<SubscriptionEntity> subs = new HashSet<SubscriptionEntity>();
   
   
   //Add readers
+  Set<ReaderEntity> readers = new HashSet<>();
   ReaderEntity readerOne = new ReaderEntity();
   ReaderEntity readerTwo = new ReaderEntity();
-  Set<ReaderEntity> readers = new HashSet<ReaderEntity>();
-  
   
   
   public void writeEntity() {
 	Session session = HibernateUtil.getSessionFactory().openSession();
 	session.beginTransaction();
 	
+	//Added Reader and Subs One
 	subOne.setSubscriptionName("Entertainment");
-	subTwo.setSubscriptionName("Horror");
-	
 	subs.add(subOne);
-	subs.add(subTwo);
 	
 	readerOne.setEmail("demo-user1@mail.com");
 	readerOne.setFirstName("demo");
 	readerOne.setLastName("user");
+	readers.add(readerOne);
+	readerOne.setSubscriptions(subs);
+	
+	//Added Reader and Subs Two
+	subTwo.setSubscriptionName("Horror");
+	subs.add(subTwo);
 	
 	readerTwo.setEmail("demo-user2@mail.com");
 	readerTwo.setFirstName("demo");
 	readerTwo.setLastName("user");
-	
-	
-	readers.add(readerOne);
 	readers.add(readerTwo);
-	
-	readerOne.setSubscriptions(subs);
 	readerTwo.setSubscriptions(subs);
 	
+	
+	//Write the into database
 	session.save(readerOne);
 	session.save(readerTwo);
 	
+	//commit it
 	session.getTransaction().commit();
 	HibernateUtil.shutdown();
 	
