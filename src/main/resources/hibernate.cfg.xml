@@ -38,7 +38,8 @@
         <property name="hibernate.dbcp.maxIdle">10</property>
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
-        <mapping package="model"></mapping>
+        <mapping class="model.ReaderEntity"></mapping>
+        <mapping class="model.SubscriptionEntity"></mapping>
 
     </session-factory>
 </hibernate-configuration>
