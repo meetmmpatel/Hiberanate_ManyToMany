@@ -16,9 +16,8 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "SUBSCRIPTION", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "ID")})
 
-public class SubscriptionEntity implements Serializable
-{
-  private static final long serialVersionUID = -6790693372846798580L;
+public class SubscriptionEntity implements Serializable {
+  
   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,41 +27,41 @@ public class SubscriptionEntity implements Serializable
   @Column(name = "SUBS_NAME", unique = true, nullable = false, length = 100)
   private String subscriptionName;
   
-  @ManyToMany(mappedBy="subscriptions")
+  @ManyToMany(mappedBy = "subscriptions")
   private Set<ReaderEntity> readers;
   
   //Getters and setters
   
   public Integer getSubscriptionId() {
-    return subscriptionId;
+	return subscriptionId;
   }
   
   public void setSubscriptionId(Integer subscriptionId) {
-    this.subscriptionId = subscriptionId;
+	this.subscriptionId = subscriptionId;
   }
   
   public String getSubscriptionName() {
-    return subscriptionName;
+	return subscriptionName;
   }
   
   public void setSubscriptionName(String subscriptionName) {
-    this.subscriptionName = subscriptionName;
+	this.subscriptionName = subscriptionName;
   }
   
   public Set<ReaderEntity> getReaders() {
-    return readers;
+	return readers;
   }
   
   public void setReaders(Set<ReaderEntity> readers) {
-    this.readers = readers;
+	this.readers = readers;
   }
   
   @Override
   public String toString() {
-    return "SubscriptionEntity{" +
-            "subscriptionId=" + subscriptionId +
-            ", subscriptionName='" + subscriptionName + '\'' +
-            ", readers=" + readers +
-            '}';
+	return "SubscriptionEntity{" +
+			"subscriptionId=" + subscriptionId +
+			", subscriptionName='" + subscriptionName + '\'' +
+			", readers=" + readers +
+			'}';
   }
 }
